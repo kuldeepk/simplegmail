@@ -528,7 +528,7 @@ class Gmail(object):
                 q=query,
                 labelIds=labels_ids,
                 includeSpamTrash=include_spam_trash,
-                maxResults=max_results
+                maxResults=max_results,
                 pageToken=page_token
             ).execute()
 
