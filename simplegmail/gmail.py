@@ -483,13 +483,13 @@ class Gmail(object):
 
     def get_messages(
         self,
-        limit: int = 50,
-        page_token: Optional[str] = None,
         user_id: str = 'me',
         labels: Optional[List[Label]] = None,
         query: str = '',
         attachments: str = 'reference',
-        include_spam_trash: bool = False
+        include_spam_trash: bool = False,
+        limit: int = 50,
+        page_token: Optional[str] = None
     ) -> List[Message]:
         """
         Gets messages from your account.
