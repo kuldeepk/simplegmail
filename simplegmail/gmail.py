@@ -488,7 +488,7 @@ class Gmail(object):
         query: str = '',
         attachments: str = 'reference',
         include_spam_trash: bool = False,
-        limit: int = 50,
+        max_results: int = 50,
         page_token: Optional[str] = None
     ) -> List[Message]:
         """
@@ -528,8 +528,8 @@ class Gmail(object):
                 q=query,
                 labelIds=labels_ids,
                 includeSpamTrash=include_spam_trash,
-                pageToken=page_token,
-                maxResults=limit
+                maxResults=max_results
+                pageToken=page_token
             ).execute()
 
             message_refs = []
@@ -543,6 +543,7 @@ class Gmail(object):
                     q=query,
                     labelIds=labels_ids,
                     includeSpamTrash=include_spam_trash,
+                    maxResults=max_results,
                     pageToken=page_token
                 ).execute()
 
