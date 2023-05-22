@@ -536,21 +536,21 @@ class Gmail(object):
             if 'messages' in response:  # ensure request was successful
                 message_refs.extend(response['messages'])
 
-            while 'nextPageToken' in response:
-                page_token = response['nextPageToken']
-                response = self.service.users().messages().list(
-                    userId=user_id,
-                    q=query,
-                    labelIds=labels_ids,
-                    includeSpamTrash=include_spam_trash,
-                    maxResults=max_results,
-                    pageToken=page_token
-                ).execute()
+            # while 'nextPageToken' in response:
+            #     page_token = response['nextPageToken']
+            #     response = self.service.users().messages().list(
+            #         userId=user_id,
+            #         q=query,
+            #         labelIds=labels_ids,
+            #         includeSpamTrash=include_spam_trash,
+            #         maxResults=max_results,
+            #         pageToken=page_token
+            #     ).execute()
 
-                message_refs.extend(response['messages'])
+            #     message_refs.extend(response['messages'])
 
             return self._get_messages_from_refs(user_id, message_refs,
-                                                attachments)
+                                                attachments), response['nextPageToken'], response['resultSizeEstimate']
 
         except HttpError as error:
             # Pass along the error
