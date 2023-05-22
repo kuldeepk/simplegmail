@@ -483,6 +483,8 @@ class Gmail(object):
 
     def get_messages(
         self,
+        limit: int = 50,
+        page_token: Optional[str] = None,
         user_id: str = 'me',
         labels: Optional[List[Label]] = None,
         query: str = '',
@@ -525,7 +527,9 @@ class Gmail(object):
                 userId=user_id,
                 q=query,
                 labelIds=labels_ids,
-                includeSpamTrash=include_spam_trash
+                includeSpamTrash=include_spam_trash,
+                pageToken=page_token,
+                maxResults=limit
             ).execute()
 
             message_refs = []
