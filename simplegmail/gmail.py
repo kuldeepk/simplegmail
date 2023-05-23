@@ -570,7 +570,7 @@ class Gmail(object):
             #     message_refs.extend(response['messages'])
 
             return self._get_messages_from_refs(user_id, message_refs,
-                                                attachments), response['nextPageToken'], response['resultSizeEstimate']
+                        attachments), response.get('nextPageToken'), response.get('resultSizeEstimate')
 
         except HttpError as error:
             # Pass along the error
